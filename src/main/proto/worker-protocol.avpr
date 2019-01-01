@@ -1,0 +1,25 @@
+{
+    "namespace": "youling.studio.protocol",
+    "protocol": "WorkerProtocol",
+
+    "types": [
+        {"name": "ReadRequest", "type": "record",
+            "fields": [
+                {"name": "filename",   "type": "string"}
+            ]
+        },
+        {
+            "name": "ReadResponse", "type": "record",
+            "fields": [
+               {"name": "status",   "type": "int"},
+               {"name": "msg", "type": "string"}
+            ]
+        }
+    ],
+    "messages": {
+        "delete": {
+            "request": [{"name": "request", "type": "ReadRequest"}],
+            "response": "ReadResponse"
+        }
+    }
+}

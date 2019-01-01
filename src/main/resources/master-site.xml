@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>dfs.master.host</name>
+        <value>localhost</value>
+    </property>
+    <property>
+        <name>dfs.master.port</name>
+        <value>12306</value>
+    </property>
+    <property>
+        <name>dfs.block.copy.num</name>
+        <value>1</value>
+    </property>
+</configuration>

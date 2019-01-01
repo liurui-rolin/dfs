@@ -1,0 +1,70 @@
+{
+    "namespace": "youling.studio.protocol",
+    "protocol": "MasterProtocol",
+
+    "types": [
+        {"name": "HeartBeatRequest", "type": "record",
+            "fields": [
+                {"name": "worder_id",   "type": "string"},
+                {"name": "host",   "type": "string"},
+                {"name": "port",   "type": "int"}
+            ]
+        },
+        {
+            "name": "HeartBeatResponse", "type": "record",
+            "fields": [
+               {"name": "status",   "type": "int"},
+               {"name": "msg", "type": "string"}
+            ]
+        },
+
+        {"name": "PutRequest", "type": "record",
+            "fields": [
+                {"name": "client_id",   "type": "string"},
+                {"name": "host",   "type": "string"},
+                {"name": "uri",   "type": "string"}
+            ]
+        },
+        {
+            "name": "PutResponse", "type": "record",
+            "fields": [
+               {"name": "status",   "type": "int"},
+               {"name": "msg", "type": "string"},
+               {
+                    "name": "blocks",
+                    "type": {
+                        "type":"array", "items": {"type":"map","values":"string"}
+                    }
+               }
+            ]
+        },
+
+        {"name": "GetRequest", "type": "record",
+            "fields": [
+                {"name": "client_id",   "type": "string"},
+                {"name": "host",   "type": "string"}
+            ]
+        },
+        {
+            "name": "GetResponse", "type": "record",
+            "fields": [
+               {"name": "status",   "type": "int"},
+               {"name": "msg", "type": "string"}
+            ]
+        }
+    ],
+    "messages": {
+        "heartbeat": {
+            "request": [{"name": "message", "type": "HeartBeatRequest"}],
+            "response": "HeartBeatResponse"
+        },
+        "put": {
+            "request": [{"name": "fileInfo", "type": "PutRequest"}],
+            "response": "PutResponse"
+        },
+        "get": {
+            "request": [{"name": "fileInfo", "type": "GetRequest"}],
+            "response": "GetResponse"
+        }
+    }
+}
