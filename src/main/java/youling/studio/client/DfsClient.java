@@ -77,6 +77,9 @@ public class DfsClient {
                     PutResponse putResponse = client.getMaster().put(request);
                     log.info("Put result: " + putResponse.toString());
 
+                    //写入文件块到worker节点
+
+
                     break;
                 default:
                     log.info("你输入的命令不存在!");
