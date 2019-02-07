@@ -91,7 +91,6 @@ public class DfsClient {
                     log.info("你输入的命令不存在!");
                     break;
             }
-            client.fileClient.close();
         }catch (Exception e){
             log.error("客户端执行命令出错: " + LogUtils.getExceptionOut(e));
         }finally {

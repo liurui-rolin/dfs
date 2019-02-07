@@ -23,8 +23,7 @@ public class FileClient {
     // 日志记录
     private static Logger log = LoggerFactory.getLogger("Client");
 
-    Bootstrap b = null;
-    EventLoopGroup group = null;
+
 
     /**
      * 基于Netty执行上传
@@ -34,19 +33,23 @@ public class FileClient {
      * @throws InterruptedException
      */
     private void doUpload(int port,String host,final FileUploadFile fileUploadFile) throws InterruptedException {
-        group = new NioEventLoopGroup();
-        b = new Bootstrap();
-        b.group(group).channel(NioSocketChannel.class).option(ChannelOption.TCP_NODELAY,true).
-                handler(new ChannelInitializer<Channel>() {
-                    @Override
-                    protected void initChannel(Channel channel) throws Exception {
-                        channel.pipeline().addLast(new ObjectEncoder());
-                        channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.weakCachingConcurrentResolver(null)));
-                        channel.pipeline().addLast(new FileClientHandler(fileUploadFile));
-                    }
-                });
-        ChannelFuture f = b.connect(host,port).sync();
-        f.channel().closeFuture().sync();
+        EventLoopGroup group = new NioEventLoopGroup();
+        try {
+            Bootstrap b = new Bootstrap();
+            b.group(group).channel(NioSocketChannel.class).option(ChannelOption.TCP_NODELAY, true).
+                    handler(new ChannelInitializer<Channel>() {
+                        @Override
+                        protected void initChannel(Channel channel) throws Exception {
+                            channel.pipeline().addLast(new ObjectEncoder());
+                            channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.weakCachingConcurrentResolver(null)));
+                            channel.pipeline().addLast(new FileClientHandler(fileUploadFile));
+                        }
+                    });
+            ChannelFuture f = b.connect(host, port).sync();
+            f.channel().closeFuture().sync();
+        }finally {
+            group.shutdownGracefully();
+        }
     }
 
     /**
@@ -62,13 +65,12 @@ public class FileClient {
             uploadFile.setFile(file);
             uploadFile.setFileMd5(fileMd5);
             uploadFile.setStartPos(0);
-            this.doUpload(Configuration.getConfiguration().workerGetInt(Constants.WORKER_FILESERVER_PORT),host,uploadFile);
+            Integer port = Configuration.getConfiguration().workerGetInt(Constants.WORKER_FILESERVER_PORT);
+            log.info("远程FileServer Port "+ port);
+            this.doUpload(port,host,uploadFile);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void close(){
-        b.clone(group);
-    }
 }

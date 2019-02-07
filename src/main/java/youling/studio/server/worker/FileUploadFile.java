@@ -1,12 +1,13 @@
 package youling.studio.server.worker;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * @author liurui
  * @date 2019/2/6 下午9:20
  */
-public class FileUploadFile {
+public class FileUploadFile implements Serializable {
     private static final long serialVersionUID = 1L;
     private File file;
     private String fileMd5;

@@ -40,6 +40,7 @@ public class FileServer implements Server {
     public void startServer() {
         //获取fileserver端口
         Integer port = conf.workerGetInt(Constants.WORKER_FILESERVER_PORT);
+        log.info("FileServer Port is " + port);
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try{
@@ -54,6 +55,7 @@ public class FileServer implements Server {
                         }
                     });
             ChannelFuture future = bootstrap.bind(port).sync();
+            log.info("FileServer启动成功!");
             future.channel().closeFuture().sync();
         }catch (InterruptedException ie){
             log.error("启动文件传送服务器失败:" + LogUtils.getExceptionOut(ie));

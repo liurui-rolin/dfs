@@ -22,8 +22,10 @@ public class FileServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(io.netty.channel.ChannelHandlerContext ctx, Object msg) throws Exception {
+        log.info("处理读取请求 dir:" + file_dir);
         //上传文件对象
         if(msg instanceof FileUploadFile){
+            log.info("服务端处理传送文件需求!");
             FileUploadFile uploadFile = (FileUploadFile) msg;
             //文件字节
             byte[] bytes = uploadFile.getBytes();
@@ -41,7 +43,6 @@ public class FileServerHandler extends ChannelInboundHandlerAdapter {
                 randomAccessFile.close();
                 ctx.close();
             }
-
         }
     }
 
