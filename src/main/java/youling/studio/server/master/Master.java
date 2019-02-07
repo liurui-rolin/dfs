@@ -1,7 +1,6 @@
 package youling.studio.server.master;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.apache.avro.ipc.NettyServer;
 import org.apache.avro.ipc.specific.SpecificResponder;
 import org.slf4j.Logger;
@@ -11,7 +10,7 @@ import youling.studio.protocol.MasterProtocol;
 import youling.studio.protocol.MasterProtocolImpl;
 import youling.studio.protocol.PutRequest;
 import youling.studio.server.Configuration;
-import youling.studio.server.Constants;
+import youling.studio.utils.Constants;
 import youling.studio.server.Server;
 import youling.studio.server.dir.BlockMap;
 import youling.studio.server.dir.DirNode;

@@ -7,11 +7,10 @@ import org.apache.avro.ipc.specific.SpecificResponder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import youling.studio.protocol.MasterProtocol;
-import youling.studio.protocol.MasterProtocolImpl;
 import youling.studio.protocol.WorkerProtocol;
 import youling.studio.protocol.WorkerProtocolImpl;
 import youling.studio.server.Configuration;
-import youling.studio.server.Constants;
+import youling.studio.utils.Constants;
 import youling.studio.server.Server;
 import youling.studio.utils.LogUtils;
 
@@ -42,6 +41,9 @@ public class Worker implements Server {
     //附带服务列表
     private HeartBeatService heartbeatService = null;
 
+    //文件上传服务器
+    private FileServer fileServer = null;
+
     public Configuration getConf() {
         return conf;
     }
@@ -69,8 +71,8 @@ public class Worker implements Server {
             //心跳服务
             heartbeatService = new HeartBeatService(this);
 
-
-            //启动 Jetty server TODO
+            //启动 Jetty server 文件上传服务器
+            fileServer = new FileServer(this.conf);
 
             log.info("完成初始化Worker服务!");
         } catch (Exception e) {
@@ -89,6 +91,9 @@ public class Worker implements Server {
 
             //启动心跳服务
             this.heartbeatService.startServer();
+
+            //启动文件传送服务器
+            this.fileServer.startServer();
 
 
             log.info("启动Worker服务!");

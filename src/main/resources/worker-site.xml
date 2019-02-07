@@ -14,4 +14,14 @@
         <value>5000</value>
         <desc>默认五秒一次心跳</desc>
     </property>
+    <property>
+        <name>dfs.fileserver.port</name>
+        <value>13001</value>
+        <desc>文件服务器端口</desc>
+    </property>
+    <property>
+        <name>dfs.fileserver.dirs</name>
+        <value>/Users/ruiliu/Downloads/dfs/worker</value>
+        <desc>文件存放目录</desc>
+    </property>
 </configuration>

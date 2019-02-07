@@ -3,8 +3,7 @@ package youling.studio.server.worker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import youling.studio.protocol.HeartBeatRequest;
-import youling.studio.protocol.MasterProtocol;
-import youling.studio.server.Constants;
+import youling.studio.utils.Constants;
 import youling.studio.server.Server;
 import youling.studio.utils.LogUtils;
 

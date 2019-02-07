@@ -8,7 +8,7 @@ import youling.studio.protocol.MasterProtocol;
 import youling.studio.protocol.PutRequest;
 import youling.studio.protocol.PutResponse;
 import youling.studio.server.Configuration;
-import youling.studio.server.Constants;
+import youling.studio.utils.Constants;
 import youling.studio.utils.LogUtils;
 
 import java.io.IOException;
@@ -34,11 +34,17 @@ public class DfsClient {
     private MasterProtocol master = null;
     NettyTransceiver masterProxy = null;
 
+    //Worker文件客户端
+    private FileClient fileClient = null;
+
     public DfsClient() {
         try {
             //获取master代理
             masterProxy = new NettyTransceiver(new InetSocketAddress(conf.masterGet(Constants.MASTR_HOST),conf.masterGetInt(Constants.MASTR_PORT)));
             master = SpecificRequestor.getClient(MasterProtocol.class, masterProxy);
+
+            //初始化文件客户端
+            fileClient = new FileClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,12 +64,12 @@ public class DfsClient {
     public static void main(String[] args) {
         DfsClient client = null;
         try{
+            //构建dfs客户端
+            client = new DfsClient();
+
             //获取操作命令
             String cmd = "put";
             String fileName = "/Users/ruiliu/Desktop/tempfile1.txt";
-
-            //构建dfs客户端
-            client = new DfsClient();
 
             switch (cmd){
                 case "put":
@@ -78,15 +84,16 @@ public class DfsClient {
                     log.info("Put result: " + putResponse.toString());
 
                     //写入文件块到worker节点
-
+                    client.fileClient.upload(fileName,Constants.LOCALHOST);
 
                     break;
                 default:
                     log.info("你输入的命令不存在!");
                     break;
             }
+            client.fileClient.close();
         }catch (Exception e){
-            log.error(LogUtils.getExceptionOut(e));
+            log.error("客户端执行命令出错: " + LogUtils.getExceptionOut(e));
         }finally {
             if(client!=null){
                 client.close();
