@@ -69,7 +69,7 @@ public class DfsClient {
 
             //获取操作命令
             String cmd = "put";
-            String fileName = "/Users/ruiliu/Desktop/tempfile1.txt";
+            String fileName = "/Users/ruiliu/Desktop/kafka.tar.gz";
 
             switch (cmd){
                 case "put":
