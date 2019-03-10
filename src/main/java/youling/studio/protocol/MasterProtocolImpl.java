@@ -1,6 +1,7 @@
 package youling.studio.protocol;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.avro.AvroRemoteException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,16 +45,20 @@ public class MasterProtocolImpl implements MasterProtocol {
         log.info("收到来自{}的写入请求.",fileInfo.getClientId());
         PutResponse response = new PutResponse();
 
-        List<Map<CharSequence,CharSequence>> res = this.master.put(fileInfo);
+        Map<CharSequence,CharSequence> res = this.master.put(fileInfo);
         if(res==null){
-            res = Lists.newArrayList();
+            res = Maps.newHashMap();
             response.setStatus(1);
             response.setMsg("传入路径不正确!");
         }else {
             response.setStatus(0);
             response.setMsg("ok");
         }
-        response.setBlocks(res);
+
+        //获取存储文件块的datanodes
+        List<Map<CharSequence,CharSequence>> datanodes = this.master.getDatenodesForFile(fileInfo);
+        response.setDatanodes(datanodes);
+
         return response;
     }
 

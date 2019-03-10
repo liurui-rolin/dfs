@@ -31,7 +31,7 @@
                {"name": "status",   "type": "int"},
                {"name": "msg", "type": "string"},
                {
-                    "name": "blocks",
+                    "name": "datanodes",
                     "type": {
                         "type":"array", "items": {"type":"map","values":"string"}
                     }

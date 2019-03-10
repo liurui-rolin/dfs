@@ -5,9 +5,9 @@ package youling.studio.server;
  * @date 2019/1/1 上午11:11
  */
 public abstract class RoleInfo {
-    public String nodeId = "";
-    public String host = "";
-    public int port = 0;
+    private String nodeId = "";
+    private String host = "";
+    private int port = 0;
 
     public String getNodeId() {
         return nodeId;

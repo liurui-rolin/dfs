@@ -1,6 +1,7 @@
 package youling.studio.server.master;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.avro.ipc.NettyServer;
 import org.apache.avro.ipc.specific.SpecificResponder;
 import org.slf4j.Logger;
@@ -121,9 +122,14 @@ public class Master implements Server{
         return 0;
     }
 
-    public List<Map<CharSequence,CharSequence>> put(PutRequest fileInfo) {
+    /**
+     * hdfs put命令
+     * @param fileInfo
+     * @return
+     */
+    public Map<CharSequence,CharSequence> put(PutRequest fileInfo) {
         log.info("Put文件:" + fileInfo);
-        List<Map<CharSequence,CharSequence>> res = Lists.newArrayList();
+        Map<CharSequence,CharSequence> res = Maps.newHashMap();
 
         //验证uri正确性
         String uri = fileInfo.getUri().toString();
@@ -133,12 +139,30 @@ public class Master implements Server{
         //创建目录
         createDir(uri,root);
 
-        //获取数据块应该分布的worker节点
-        // TODO
-
         //打印目录树
         printDir(this.root);
+
+        res.put("status","0");
+        res.put("msg","ok");
         return res;
+    }
+
+    /**
+     * 获取文件存储的datanode列表
+     * @param fileInfo
+     * @return
+     */
+    public List<Map<CharSequence,CharSequence>> getDatenodesForFile(PutRequest fileInfo){
+        List<Map<CharSequence,CharSequence>> datanodes = Lists.newArrayList();
+
+        for(WorkerInfo workerInfo : this.workers.values()){
+            Map<CharSequence,CharSequence> worker = Maps.newHashMap();
+
+
+            datanodes.add(worker);
+        }
+
+        return datanodes;
     }
 
     /**

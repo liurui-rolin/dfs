@@ -1,5 +1,6 @@
 package youling.studio.server.worker;
 
+import com.google.common.collect.Lists;
 import org.apache.avro.ipc.NettyServer;
 import org.apache.avro.ipc.NettyTransceiver;
 import org.apache.avro.ipc.specific.SpecificRequestor;
@@ -15,6 +16,7 @@ import youling.studio.server.Server;
 import youling.studio.utils.LogUtils;
 
 import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -103,6 +105,29 @@ public class Worker implements Server {
             lock.unlock();
         }
     }
+
+    /**
+     * 获取worker总磁盘容量
+     * @return
+     */
+    public Double getCapacity(){
+        //TODO
+
+        return 0d;
+    }
+
+    /**
+     * 获取所有文件块信息
+     * @return
+     */
+    public List<WorkerBlockInfo> getAllBlocks(){
+        List<WorkerBlockInfo> blocks = Lists.newArrayList();
+
+        //TODO
+
+        return blocks;
+    }
+
 
     public static void main(String[] args) {
         //启动worker服务

@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class PutResponse extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4297243152561864258L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PutResponse\",\"namespace\":\"youling.studio.protocol\",\"fields\":[{\"name\":\"status\",\"type\":\"int\"},{\"name\":\"msg\",\"type\":\"string\"},{\"name\":\"blocks\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"map\",\"values\":\"string\"}}}]}");
+  private static final long serialVersionUID = -6452323486167527867L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PutResponse\",\"namespace\":\"youling.studio.protocol\",\"fields\":[{\"name\":\"status\",\"type\":\"int\"},{\"name\":\"msg\",\"type\":\"string\"},{\"name\":\"datanodes\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"map\",\"values\":\"string\"}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -53,7 +53,7 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
 
   @Deprecated public int status;
   @Deprecated public java.lang.CharSequence msg;
-  @Deprecated public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> blocks;
+  @Deprecated public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> datanodes;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -66,12 +66,12 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
    * All-args constructor.
    * @param status The new value for status
    * @param msg The new value for msg
-   * @param blocks The new value for blocks
+   * @param datanodes The new value for datanodes
    */
-  public PutResponse(java.lang.Integer status, java.lang.CharSequence msg, java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> blocks) {
+  public PutResponse(java.lang.Integer status, java.lang.CharSequence msg, java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> datanodes) {
     this.status = status;
     this.msg = msg;
-    this.blocks = blocks;
+    this.datanodes = datanodes;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -80,7 +80,7 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
     switch (field$) {
     case 0: return status;
     case 1: return msg;
-    case 2: return blocks;
+    case 2: return datanodes;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -91,7 +91,7 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
     switch (field$) {
     case 0: status = (java.lang.Integer)value$; break;
     case 1: msg = (java.lang.CharSequence)value$; break;
-    case 2: blocks = (java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>>)value$; break;
+    case 2: datanodes = (java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -129,19 +129,19 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
-   * Gets the value of the 'blocks' field.
-   * @return The value of the 'blocks' field.
+   * Gets the value of the 'datanodes' field.
+   * @return The value of the 'datanodes' field.
    */
-  public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> getBlocks() {
-    return blocks;
+  public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> getDatanodes() {
+    return datanodes;
   }
 
   /**
-   * Sets the value of the 'blocks' field.
+   * Sets the value of the 'datanodes' field.
    * @param value the value to set.
    */
-  public void setBlocks(java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> value) {
-    this.blocks = value;
+  public void setDatanodes(java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> value) {
+    this.datanodes = value;
   }
 
   /**
@@ -178,7 +178,7 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
 
     private int status;
     private java.lang.CharSequence msg;
-    private java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> blocks;
+    private java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> datanodes;
 
     /** Creates a new Builder */
     private Builder() {
@@ -199,8 +199,8 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
         this.msg = data().deepCopy(fields()[1].schema(), other.msg);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.blocks)) {
-        this.blocks = data().deepCopy(fields()[2].schema(), other.blocks);
+      if (isValidValue(fields()[2], other.datanodes)) {
+        this.datanodes = data().deepCopy(fields()[2].schema(), other.datanodes);
         fieldSetFlags()[2] = true;
       }
     }
@@ -219,8 +219,8 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
         this.msg = data().deepCopy(fields()[1].schema(), other.msg);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.blocks)) {
-        this.blocks = data().deepCopy(fields()[2].schema(), other.blocks);
+      if (isValidValue(fields()[2], other.datanodes)) {
+        this.datanodes = data().deepCopy(fields()[2].schema(), other.datanodes);
         fieldSetFlags()[2] = true;
       }
     }
@@ -303,40 +303,40 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
     }
 
     /**
-      * Gets the value of the 'blocks' field.
+      * Gets the value of the 'datanodes' field.
       * @return The value.
       */
-    public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> getBlocks() {
-      return blocks;
+    public java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> getDatanodes() {
+      return datanodes;
     }
 
     /**
-      * Sets the value of the 'blocks' field.
-      * @param value The value of 'blocks'.
+      * Sets the value of the 'datanodes' field.
+      * @param value The value of 'datanodes'.
       * @return This builder.
       */
-    public youling.studio.protocol.PutResponse.Builder setBlocks(java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> value) {
+    public youling.studio.protocol.PutResponse.Builder setDatanodes(java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>> value) {
       validate(fields()[2], value);
-      this.blocks = value;
+      this.datanodes = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'blocks' field has been set.
-      * @return True if the 'blocks' field has been set, false otherwise.
+      * Checks whether the 'datanodes' field has been set.
+      * @return True if the 'datanodes' field has been set, false otherwise.
       */
-    public boolean hasBlocks() {
+    public boolean hasDatanodes() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'blocks' field.
+      * Clears the value of the 'datanodes' field.
       * @return This builder.
       */
-    public youling.studio.protocol.PutResponse.Builder clearBlocks() {
-      blocks = null;
+    public youling.studio.protocol.PutResponse.Builder clearDatanodes() {
+      datanodes = null;
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -348,7 +348,7 @@ public class PutResponse extends org.apache.avro.specific.SpecificRecordBase imp
         PutResponse record = new PutResponse();
         record.status = fieldSetFlags()[0] ? this.status : (java.lang.Integer) defaultValue(fields()[0]);
         record.msg = fieldSetFlags()[1] ? this.msg : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.blocks = fieldSetFlags()[2] ? this.blocks : (java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>>) defaultValue(fields()[2]);
+        record.datanodes = fieldSetFlags()[2] ? this.datanodes : (java.util.List<java.util.Map<java.lang.CharSequence,java.lang.CharSequence>>) defaultValue(fields()[2]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

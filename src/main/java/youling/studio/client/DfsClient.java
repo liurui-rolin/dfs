@@ -87,6 +87,12 @@ public class DfsClient {
                     client.fileClient.upload(fileName,Constants.LOCALHOST);
 
                     break;
+                case "get":
+
+                    break;
+                case "delete":
+
+                    break;
                 default:
                     log.info("你输入的命令不存在!");
                     break;
